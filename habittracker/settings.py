@@ -65,7 +65,7 @@ ROOT_URLCONF = 'habittracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        "DIRS": [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,6 +141,9 @@ INTERNAL_IPS = [
 ]
 
 SIMPLE_BACKEND_REDIRECT_URL = "/"
+
+
+AUTH_USER_MODEL = 'habit.User'
 
 # Django - on - Heroku settings
 django_on_heroku.settings(locals())

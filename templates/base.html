@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitual Me</title>
+</head>
+
+<header>
+    <nav>
+        <div>
+            <center>
+            {% if user.is_authenticated %}
+                <a href={% url 'auth_logout' %}>logout</a> 
+            {% else %}
+                <a href={% url 'registration_register' %}>register</a>
+                <a href={% url 'auth_login' %}>login</a> 
+            {% endif %}
+            </center>
+        </div>
+    </nav>
+</header>
+
+<body>
+    
+{% block content}
+
+{% endblock %}
+
+</body>
+</html>
+
+
+
