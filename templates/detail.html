@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a href="'{% url 'index' %}">back to a</a>
+
+{% if habit %}
+<h2>{{ habit.name }}</h2>
+<h3>target: {{ habit.action }} {{ habit.target }} {{ habit.units }} daily</h3>
+<h4>{{ habit.name }}-ing since {{ habit.start }}</h4>
+{% endif %}
+
+{% endblock %}

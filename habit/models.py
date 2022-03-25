@@ -10,7 +10,9 @@ class User(AbstractUser):
 
 
 class Habit(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', default=True)
     name = models.CharField(max_length=150, blank=False)
+    action = models.CharField(max_length=20, blank=False)
     target = models.IntegerField(blank=False)
     units = models.CharField(max_length=20, blank=False)
     start = models.DateField(auto_now_add=True)

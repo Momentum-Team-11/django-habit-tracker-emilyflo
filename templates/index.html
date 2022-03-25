@@ -1,3 +1,9 @@
 {% extends 'base.html' %}
 
-hello, hello
+{% block content %}
+
+{% for habit in habits %}
+<h2><a href="{% url 'detail' pk=habit.pk %}">{{ habit.name }}</a></h2>
+{% endfor %}
+
+{% endblock %}
