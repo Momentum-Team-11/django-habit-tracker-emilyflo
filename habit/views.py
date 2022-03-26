@@ -34,12 +34,14 @@ def add_habit(request):
 @login_required
 def add_record(request, habit_pk):
   habit = get_object_or_404(request.user.habits, pk=habit_pk)
-  if request.method == 'POST':
+  if request.method == 'GET':
+    form = RecordForm()
+  else:
     form = RecordForm(data=request.POST)
-  
     if form.is_valid():
       record = form.save(commit=False)
       record.habit = habit
       record.save()
+      return redirect(to='detail', pk=habit.pk)
 
-  return redirect('add_record', pk=habit_pk)
+  return render(request, 'add_record.html', {'form': form, 'habit': habit})

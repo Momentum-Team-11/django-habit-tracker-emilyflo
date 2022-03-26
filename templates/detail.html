@@ -12,10 +12,10 @@
 
 <a href="{% url 'add_record' habit_pk=habit.pk %}">record your daily habit</a>
 
-{% for record in records %}
+{% if record %}
 {{ record.habit }}
 {{ record.date }}
 {{ record.record }}
-{% endfor %}
+{% endif %}
 
 {% endblock %} 

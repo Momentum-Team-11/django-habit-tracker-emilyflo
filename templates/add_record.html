@@ -5,6 +5,7 @@
 <div>
     <form action="{% url 'add_record' habit_pk=habit.pk %}" method="POST">
     {% csrf_token %}
+    {{ form.as_p }}
     {% for field in record_form %}
         <div>
             <label for="{{field.id_for_label}}">{{ field.label }}</label>
