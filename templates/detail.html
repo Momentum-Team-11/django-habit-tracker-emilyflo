@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<a href="'{% url 'index' %}">back to a</a>
+<a href="{% url 'index' %}">back to my habits</a> | <a href="{% url 'add_habit' %}">pick up a new habit</a>
 
 {% if habit %}
 <h2>{{ habit.name }}</h2>
@@ -10,4 +10,12 @@
 <h4>{{ habit.name }}-ing since {{ habit.start }}</h4>
 {% endif %}
 
-{% endblock %}
+<a href="{% url 'add_record' habit_pk=habit.pk %}">record your daily habit</a>
+
+{% for record in records %}
+{{ record.habit }}
+{{ record.date }}
+{{ record.record }}
+{% endfor %}
+
+{% endblock %} 
