@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
+import habit
 from .models import Habit, Record
 from .forms import HabitForm, RecordForm
 from django.contrib.auth.decorators import login_required
@@ -33,7 +35,7 @@ def add_habit(request):
 
 @login_required
 def add_record(request, habit_pk):
-  habit = get_object_or_404(request.user.habits, pk=habit_pk)
+  habit = get_object_or_404(Habit, pk=habit_pk)
   if request.method == 'GET':
     form = RecordForm()
   else:
@@ -45,3 +47,18 @@ def add_record(request, habit_pk):
       return redirect(to='detail', pk=habit.pk)
 
   return render(request, 'add_record.html', {'form': form, 'habit': habit})
+
+@login_required
+def edit_record(request, pk):
+  records = get_object_or_404(Record, pk=pk)
+  records = habit.record.all()
+  if request.method == 'POST':
+    form = RecordForm(request.POST, instance=record)
+    if form.is_valid():
+      record = form.save(commit=False)
+      record.save()
+      return redirect(to='detail', pk=pk)
+  else:
+    form = RecordForm(instance=record)
+
+  return render(request, 'edit_record.html', {'form': form, 'record': record, 'records': records, 'habits': habits})

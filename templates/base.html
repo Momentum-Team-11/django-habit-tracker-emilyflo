@@ -15,14 +15,12 @@
     <h1>Habitual Me</h1>
     <nav>
         <div>
-            <center>
             {% if user.is_authenticated %}
                 <a href={% url 'auth_logout' %}>logout</a> 
             {% else %}
                 <a href={% url 'registration_register' %}>register</a>
                 <a href={% url 'auth_login' %}>login</a> 
             {% endif %}
-            </center>
         </div>
     </nav>
 </header>

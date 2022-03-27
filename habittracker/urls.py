@@ -25,5 +25,6 @@ urlpatterns = [
     path('index', habit_views.index, name='index'),
     path('detail/<int:pk>/', habit_views.detail, name='detail'),
     path('add_habit/', habit_views.add_habit, name='add_habit'),
-    path('habits/<int:habit_pk>/records', habit_views.add_record, name='add_record')
+    path('habits/<int:habit_pk>/records', habit_views.add_record, name='add_record'),
+    path('habits/<int:pk>/', habit_views.edit_record, name='edit_record')
             ]

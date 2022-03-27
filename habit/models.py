@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Q
+from django.db.models import UniqueConstraint
 
 class User(AbstractUser):
     def __repr__(self):
@@ -34,10 +35,11 @@ class Record(models.Model):
     habit = models.ForeignKey(Habit, on_delete=models.CASCADE, related_name='habit')
     date = models.DateField(auto_now_add=True)
     record = models.IntegerField(blank=False)
+    units = models.CharField(max_length=20, blank=False, default='')
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['habit', 'record'], name='one_record_per_day')
+            models.UniqueConstraint(fields=['habit', 'date'], name='one_record_per_day')
         ]
 
 

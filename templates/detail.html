@@ -2,20 +2,29 @@
 
 {% block content %}
 
-<a href="{% url 'index' %}">back to my habits</a> | <a href="{% url 'add_habit' %}">pick up a new habit</a>
+<center><nobr><a href="{% url 'index' %}">back to my habits</a>
+    | <a href="{% url 'add_habit' %}">pick up a new habit</a>
+    | <a href="{% url 'add_record' habit_pk=habit.pk %}">record your daily habit</a></nobr></center>
 
 {% if habit %}
-<h2>{{ habit.name }}</h2>
-<h3>target: {{ habit.action }} {{ habit.target }} {{ habit.units }} daily</h3>
-<h4>{{ habit.name }}-ing since {{ habit.start }}</h4>
+<h1>{{ habit.name }}</h1>
+<h2><nobr>I want to {{ habit.action }} {{ habit.target }} {{ habit.units }} daily. I've been {{ habit.name }}-ing since {{ habit.start }}.</nobr></h2>
 {% endif %}
 
-<a href="{% url 'add_record' habit_pk=habit.pk %}">record your daily habit</a>
-
-{% if record %}
-{{ record.habit }}
-{{ record.date }}
-{{ record.record }}
-{% endif %}
-
+<center>
+    <table>
+        <td>date</td>
+        <td>number</td>
+        <td>units</td>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.date }}</td>
+            <td>{{ record.record }}</td>
+            <td>{{ record.units }}</td>
+            <td><a href="{% url 'edit_record' pk=record.pk %}">update your daily record</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
 {% endblock %} 
+

@@ -18,6 +18,6 @@ class RecordForm(forms.ModelForm):
   class Meta:
     model = Record
     fields = [
-      'habit',
-      'record'
+      'record',
+      'units'
     ]
