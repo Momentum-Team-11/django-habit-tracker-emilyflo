@@ -2,6 +2,14 @@
 
 {% block content %}
 
-edit form
+<div>
+    <form action="{% url 'edit_record' pk=record.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button type="submit">update my progress</button>
+        </div>
+    </form>
+</div>
 
 {% endblock %}
