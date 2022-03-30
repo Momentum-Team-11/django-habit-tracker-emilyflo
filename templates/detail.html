@@ -19,7 +19,7 @@
         <tr>
             <td>{{ record.date }}</td>
             <td><center>{{ record.record }}</center></td>
-            <td{{ record.units }}</td>
+            <td>{{ record.units }}</td>
             <td><a href="{% url 'edit_record' pk=record.pk %}">update your daily record</a></td>
             <td>{% if record.record >= habit.target %} ☆ {% endif %}</td>
         </tr>
