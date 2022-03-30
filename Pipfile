@@ -12,6 +12,9 @@ django-on-heroku = "*"
 gunicorn = "*"
 django-environ = "*"
 django-debug-toolbar = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [dev-packages]
 

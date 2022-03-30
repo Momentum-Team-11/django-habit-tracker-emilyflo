@@ -49,13 +49,11 @@ def add_record(request, habit_pk):
 @login_required
 def edit_record(request, pk):
   record = Record.objects.filter(pk=pk).first()
-  if request.method == 'POST':
+  if request.method == 'GET':
+    form = RecordForm(instance=record)
+  else:
     form = RecordForm(request.POST, instance=record)
     if form.is_valid():
-      record = form.save(commit=False)
-      record.save()
-      return redirect(to='detail', pk=pk)
-  else:
-    form = RecordForm(instance=record)
-
+      form.save()
+      return redirect(to='detail', pk=record.habit.pk)
   return render(request, 'edit_record.html', {'form': form, 'record': record})

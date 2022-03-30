@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'django_extensions',
-    'habit'
+    'habit',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,9 @@ AUTH_USER_MODEL = 'habit.User'
 # Django - on - Heroku settings
 django_on_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
+
+REST_FRAMEWORK = {
+  'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+  ]
+}
