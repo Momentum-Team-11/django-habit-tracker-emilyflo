@@ -26,9 +26,12 @@ urlpatterns = [
     path('index', habit_views.index, name='index'),
     path('detail/<int:pk>/', habit_views.detail, name='detail'),
     path('add_habit/', habit_views.add_habit, name='add_habit'),
+    path('habits/<int:pk>/edit/', habit_views.edit_habit, name='edit_habit'),
+    path('habits/<int:pk>/delete/', habit_views.delete_habit, name='delete_habit'),
     path('habits/<int:habit_pk>/records', habit_views.add_record, name='add_record'),
     path('habits/<int:pk>/', habit_views.edit_record, name='edit_record'),
     path('api-auth/', include('rest_framework.urls')),
     path('api/habit', api_views.HabitListView.as_view(), name='api_habit_list'),
+    path('api/habits/records', api_views.RecordsListView.as_view(), name='api_records_list')
     # path('api/add_habit', api_views.AddHabitView.as_view(), name='api_add_habit'),
             ]

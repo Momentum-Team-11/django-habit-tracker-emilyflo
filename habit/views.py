@@ -29,7 +29,26 @@ def add_habit(request):
     if form.is_valid():
       form.save()
       return redirect(to='index')
-  return render(request, 'add_habit.html', {'form': form})
+      
+@login_required
+def edit_habit(request, pk):
+  habit = get_object_or_404(Habit, pk=pk)
+  if request.method == 'GET':
+    form = HabitForm(instance=habit)
+  else:
+    form = HabitForm(data=request.POST, instance=habit)
+    if form.is_valid():
+      form.save()
+      return redirect(to='detail', pk=habit.pk)
+  return render(request, 'edit_habit.html', {'habit': habit, 'form': form})
+
+@login_required
+def delete_habit(request, pk):
+  habit = get_object_or_404(Habit, pk=pk)
+  if request.method == 'POST':
+    habit.delete()
+    return redirect(to='index')
+  return render(request, 'delete_habit.html', {'habit': habit})
 
 @login_required
 def add_record(request, habit_pk):
