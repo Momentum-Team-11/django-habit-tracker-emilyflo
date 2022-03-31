@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<center><nobr><a href="{% url 'index' %}">back to my habits</a>
+    | <a href="{% url 'add_habit' %}">pick up a new habit</a>
+    | <a href="{% url 'add_record' habit_pk=habit.pk %}">record your daily habit</a></nobr></center>
+
+{% if habit %}
+<h1>{{ habit.name }}</h1>
+<h2><nobr>I want to {{ habit.action }} {{ habit.target }} {{ habit.units }} daily.</nobr></h2>
+
+<center>
+    <table>
+        <td><center>date</center></td>
+        <td>number</td>
+        <td><center>units</center></td>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.date }}</td>
+            <td><center>{{ record.record }}</center></td>
+            <td>{{ record.units }}</td>
+            <td><a href="{% url 'edit_record' pk=record.pk %}">update your daily record</a></td>
+            <td>{% if record.record >= habit.target %} ☆ {% endif %}</td>
+        </tr>
+        {% endfor %}
+{% endif %}
+    </table>
+</center>
+</br>
+<nobr><a href="{% url 'edit_habit' pk=habit.pk %}">edit habit</a>
+    | <a href="{% url 'delete_habit' pk=habit.pk %}">delete habit</a></nobr>
+
+
+{% endblock %}
