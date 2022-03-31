@@ -32,7 +32,7 @@ class Habit(models.Model):
         return self.name
 
 class Record(models.Model):
-    habit = models.ForeignKey(Habit, on_delete=models.CASCADE, related_name='habit')
+    habit = models.ForeignKey(Habit, on_delete=models.CASCADE, related_name='habits')
     date = models.DateField(auto_now_add=True)
     record = models.IntegerField(blank=False)
     units = models.CharField(max_length=20, blank=False, default='')

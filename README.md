@@ -77,3 +77,7 @@ If you want to add charts to your habits, you'll definitely need JavaScript. Che
 1. (Unsatisfactory) Does not store data via models, does not use forms, or does not use GET and POST for views correctly.
 2. (Satisfactory) Has User, Habit, and Record models (or equivalent), uses forms for all data entry, standard use of views and URLs.
 3. (Exemplary) Writes custom functionality in views, uses Django queries to get aggregated values.
+
+API endpoints
+To see a list of all of the created habits,  http://127.0.0.1:8000/api/habits
+habit detail - URL - find the pk from the index page of all the habits, and put it at the end of the address
